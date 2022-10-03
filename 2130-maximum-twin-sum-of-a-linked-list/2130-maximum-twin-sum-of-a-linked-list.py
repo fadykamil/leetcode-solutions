@@ -11,20 +11,18 @@ class Solution(object):
         """
         next_node = head
         n = 0
-        values = {}
+        values = []
         while next_node != None:
-            values[n] = next_node.val
             n += 1
+            values.append(next_node.val)
             next_node = next_node.next
         greatest_twin_sum = 0
-        
-        for i, val in values.items():
+        for i, val in enumerate(values):
             twin = n - 1 - i
             if twin == 0:
                 break
-            twin_sum = values[i] + values[twin]
-            if twin_sum > greatest_twin_sum:
-                greatest_twin_sum = twin_sum
+            if values[i] + values[twin] > greatest_twin_sum:
+                greatest_twin_sum = values[i] + values[twin]
             
         return greatest_twin_sum
         
