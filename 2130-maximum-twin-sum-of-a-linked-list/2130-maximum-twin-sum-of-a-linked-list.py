@@ -16,7 +16,6 @@ class Solution(object):
             n += 1
             values.append(next_node.val)
             next_node = next_node.next
-        half_values = values[:len(values)/2]
-        twin_sums = [values[i] + values[n - 1 - i] for i, val in enumerate(half_values)]
+        twin_sums = [values[i] + values[n - 1 - i] for i, val in enumerate(values)]
         return max(twin_sums)
         
