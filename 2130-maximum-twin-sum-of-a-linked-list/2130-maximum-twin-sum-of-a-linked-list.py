@@ -5,8 +5,10 @@
 #         self.next = next
 class Solution(object):
     def my_gen(self, values):
-        for i, val in enumerate(values):
-            yield i, val
+        i = 0
+        for val in values:
+            i += 1
+            yield i-1, val
     def pairSum(self, head):
         """
         :type head: Optional[ListNode]
