@@ -11,13 +11,14 @@ class Solution(object):
         """
         next_node = head
         n = 0
-        values = []
+        values = {}
         while next_node != None:
-            values.append(next_node.val)
-            next_node = next_node.next
+            values[n] = next_node.val
             n += 1
+            next_node = next_node.next
         greatest_twin_sum = 0
-        for i, val in enumerate(values):
+        
+        for i, val in values.items():
             twin = n - 1 - i
             if twin == 0:
                 break
