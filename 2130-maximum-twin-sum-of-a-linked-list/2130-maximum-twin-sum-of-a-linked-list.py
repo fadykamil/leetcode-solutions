@@ -16,13 +16,7 @@ class Solution(object):
             n += 1
             values.append(next_node.val)
             next_node = next_node.next
-        greatest_twin_sum = 0
-        for i, val in enumerate(values):
-            twin = n - 1 - i
-            if twin == 0:
-                break
-            if values[i] + values[twin] > greatest_twin_sum:
-                greatest_twin_sum = values[i] + values[twin]
-            
-        return greatest_twin_sum
+        half_values = values[:len(values)/2]
+        twin_sums = [values[i] + values[n - 1 - i] for i, val in enumerate(half_values)]
+        return max(twin_sums)
         
