@@ -10,19 +10,25 @@ class Solution(object):
             i += 1
             yield i-1, val
     def pairSum(self, head):
-        """
-        :type head: Optional[ListNode]
-        :rtype: int
-        """
-        next_node = head
-        values = []
-        while next_node != None:
-            values.append(next_node.val)
-            next_node = next_node.next
-        n = len(values)
-        greatest_twin_sum = 0
-        for i, val in self.my_gen(values):
-            if values[i] + values[n - 1 - i] > greatest_twin_sum:
-                greatest_twin_sum = values[i] + values[n - 1 - i]
-        return greatest_twin_sum
+        slow, fast = head, head
+        maxVal = 0
+
+        # Get middle of linked list
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+
+        # Reverse second part of linked list
+        curr, prev = slow, None
+
+        while curr:       
+            curr.next, prev, curr = prev, curr, curr.next   
+
+        # Get max sum of pairs
+        while prev:
+            maxVal = max(maxVal, head.val + prev.val)
+            prev = prev.next
+            head = head.next
+
+	return maxVal
         
